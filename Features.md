@@ -2,22 +2,24 @@
 
 ## Implémentées
 
-### * Reconstruction complète du kit
-- 38 composants, 30 sections, 6 menus, 15 effets
-- Architecture en factories TypeScript
-- Date : 2026-09-13
+### Générateur visuel premium
+- Layout trois colonnes : bibliothèque, canvas, propriétés/code
+- 14 composants, 10 sections, 10 effets
+- Mode clair / sombre / système + sélecteur de couleur d’accent (7 préréglages + personnalisé)
+- Génération de code HTML/CSS/JS par élément
+- Export `.html` autonome et `manifest.json` consommable
+- Glisser-déposer, réorganiser, supprimer et éditer les éléments du canvas
+- Application d’effets sur n’importe quel composant ou section
 
-### * Démonstration visuelle
-- Page unique listant tous les éléments
-- Playground d’effets interactif
-- Date : 2026-09-13
+### Stack
+- HTML5, CSS3 (custom properties, flexbox, grid, animations), JavaScript vanilla
+- Zéro dépendance, zéro outil de build
 
-### * Build validé
-- TypeScript strict (`tsc` sans erreur)
-- Vite build en production
-- Date : 2026-09-13
+### Validation
+- Rendu testé via serveur local + navigateur headless
+- Aucune erreur console
 
 ## Combos possibles
-- Composant + effet : `slideIn(createCard())`
-- Section + menu : `HeroCenter` + `TopNav`
-- Menu + effet : `CommandPalette` avec `scaleIn`
+- Composant + effet : appliquer `slide` à un bouton
+- Section + effet : appliquer `stagger` à une grille de fonctionnalités
+- Effet seul : insérer `float` ou `glow` dans le canvas

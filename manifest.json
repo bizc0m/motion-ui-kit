@@ -1,0 +1,115 @@
+{
+  "kitVersion": "2.0.0",
+  "theme": "dark",
+  "accent": "#8b5cf6",
+  "generatedAt": "2026-09-13T11:57:34.576Z",
+  "sharedCSS": ":root {\n  --m-accent: #8b5cf6;\n  --m-accent-rgb: 139, 92, 246;\n  --m-accent-2: #22d3ee;\n  --m-bg: #09090b;\n  --m-surface: #101014;\n  --m-surface-raised: #18181c;\n  --m-surface-elevated: #202025;\n  --m-border: #27272e;\n  --m-text: #f4f4f5;\n  --m-text-muted: #71717a;\n  --m-radius: 10px;\n  --m-radius-lg: 14px;\n  --m-radius-xl: 20px;\n  --m-shadow: 0 8px 24px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.18);\n  --m-ease: cubic-bezier(0.22, 1, 0.36, 1);\n  --m-sans: -apple-system, BlinkMacSystemFont, \"SF Pro Text\", system-ui, sans-serif;\n}\n\n[data-theme=\"light\"] {\n  --m-bg: #fafafa;\n  --m-surface: #ffffff;\n  --m-surface-raised: #f4f4f5;\n  --m-surface-elevated: #e4e4e7;\n  --m-border: #e4e4e7;\n  --m-text: #18181b;\n  --m-text-muted: #a1a1aa;\n  --m-shadow: 0 8px 24px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);\n}\n\n/* Effects */\n[data-kit-effect=\"fade\"] { animation: m-fade 600ms var(--m-ease) both; }\n[data-kit-effect=\"slide\"] { animation: m-slide 600ms var(--m-ease) both; }\n[data-kit-effect=\"scale\"] { animation: m-scale 500ms var(--m-ease) both; }\n[data-kit-effect=\"blur\"] { animation: m-blur 700ms var(--m-ease) both; }\n[data-kit-effect=\"float\"] { animation: m-float 5s ease-in-out infinite; }\n[data-kit-effect=\"pulse\"] { animation: m-pulse 2s ease-in-out infinite; }\n[data-kit-effect=\"glow\"] { animation: m-glow 2.5s ease-in-out infinite alternate; }\n[data-kit-effect=\"shimmer\"] { position: relative; overflow: hidden; }\n[data-kit-effect=\"shimmer\"]::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.08) 50%, transparent 70%); transform: translateX(-100%); animation: m-shimmer 2.2s infinite; }\n[data-kit-effect=\"tilt\"] { transform-style: preserve-3d; transition: transform 200ms var(--m-ease); }\n[data-kit-effect=\"stagger\"] > * { opacity: 0; animation: m-slide 500ms var(--m-ease) forwards; }\n[data-kit-effect=\"stagger\"] > *:nth-child(1) { animation-delay: 0ms; }\n[data-kit-effect=\"stagger\"] > *:nth-child(2) { animation-delay: 80ms; }\n[data-kit-effect=\"stagger\"] > *:nth-child(3) { animation-delay: 160ms; }\n[data-kit-effect=\"stagger\"] > *:nth-child(4) { animation-delay: 240ms; }\n[data-kit-effect=\"stagger\"] > *:nth-child(5) { animation-delay: 320ms; }\n[data-kit-effect=\"stagger\"] > *:nth-child(6) { animation-delay: 400ms; }\n@keyframes m-fade { from { opacity: 0; } to { opacity: 1; } }\n@keyframes m-slide { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }\n@keyframes m-scale { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }\n@keyframes m-blur { from { opacity: 0; filter: blur(8px); } to { opacity: 1; filter: blur(0); } }\n@keyframes m-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }\n@keyframes m-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(0.98); } }\n@keyframes m-glow { from { box-shadow: 0 0 0 rgba(var(--m-accent-rgb), 0); } to { box-shadow: 0 0 24px rgba(var(--m-accent-rgb), 0.35); } }\n@keyframes m-shimmer { 100% { transform: translateX(100%); } }",
+  "items": [
+    {
+      "id": "rzmoucb",
+      "type": "section",
+      "name": "Hero",
+      "key": "hero",
+      "props": {
+        "headline": "Build faster with Motion UI Kit",
+        "subhead": "A premium set of components, sections and motion effects you can drop into any project.",
+        "effect": "fade"
+      },
+      "html": "<section class=\"kit-section-hero\">\n  <h2>Build faster with Motion UI Kit</h2>\n  <p>A premium set of components, sections and motion effects you can drop into any project.</p>\n  <div class=\"actions\">\n    <button class=\"kit-btn kit-btn-primary\">Start building</button>\n    <button class=\"kit-btn kit-btn-ghost\">View documentation</button>\n  </div>\n</section>",
+      "css": ".kit-section-hero { padding:64px 24px; text-align:center; border:1px solid var(--m-border); border-radius:var(--m-radius-xl); background:radial-gradient(ellipse at top, rgba(var(--m-accent-rgb),0.08), transparent 60%), var(--m-surface); }\n.kit-section-hero h2 { font-size:clamp(28px, 5vw, 48px); font-weight:800; letter-spacing:-0.03em; margin-bottom:14px; }\n.kit-section-hero p { font-size:16px; color:var(--m-text-muted); max-width:520px; margin:0 auto 24px; }\n.kit-section-hero .actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }\n.kit-btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 18px; border-radius:var(--m-radius); font-family:var(--m-sans); font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent; transition:transform 200ms; }\n.kit-btn:hover { transform:translateY(-2px); }\n.kit-btn-primary { background:linear-gradient(135deg, var(--m-accent), color-mix(in srgb, var(--m-accent) 65%, var(--m-accent-2))); color:#fff; }\n.kit-btn-ghost { background:transparent; border-color:var(--m-border); color:var(--m-text-muted); }\n.kit-btn-ghost:hover { background:var(--m-surface-raised); color:var(--m-text); }",
+      "js": ""
+    },
+    {
+      "id": "ezs8bw0",
+      "type": "section",
+      "name": "Features Grid",
+      "key": "features-grid",
+      "props": {
+        "title": "Everything you need",
+        "effect": "stagger"
+      },
+      "html": "<section class=\"kit-section-features\">\n  <h3>Everything you need</h3>\n  <div class=\"kit-features-grid\">\n    <div class=\"kit-feature\"><div class=\"kit-feature-icon\">✦</div><h4>Lightning fast</h4><p>Ship in hours, not weeks.</p></div>\n    <div class=\"kit-feature\"><div class=\"kit-feature-icon\">✦</div><h4>Accessible</h4><p>Keyboard and screen-reader friendly.</p></div>\n    <div class=\"kit-feature\"><div class=\"kit-feature-icon\">✦</div><h4>Zero deps</h4><p>No framework lock-in.</p></div>\n    <div class=\"kit-feature\"><div class=\"kit-feature-icon\">✦</div><h4>Customizable</h4><p>Tokens, colors and motion.</p></div>\n  </div>\n</section>",
+      "css": ".kit-section-features { padding:40px 24px; border:1px solid var(--m-border); border-radius:var(--m-radius-xl); background:var(--m-surface); }\n.kit-section-features h3 { font-size:22px; font-weight:700; margin-bottom:24px; text-align:center; }\n.kit-features-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px; }\n.kit-feature { padding:18px; background:var(--m-surface-raised); border:1px solid var(--m-border); border-radius:var(--m-radius-lg); }\n.kit-feature-icon { width:36px; height:36px; border-radius:var(--m-radius); background:rgba(var(--m-accent-rgb),0.1); display:grid; place-items:center; color:var(--m-accent); margin-bottom:12px; }\n.kit-feature h4 { font-size:14px; font-weight:700; margin-bottom:6px; }\n.kit-feature p { font-size:12px; color:var(--m-text-muted); line-height:1.5; }",
+      "js": ""
+    },
+    {
+      "id": "nv3q6fe",
+      "type": "section",
+      "name": "Pricing",
+      "key": "pricing",
+      "props": {
+        "title": "Simple pricing",
+        "effect": "stagger"
+      },
+      "html": "<section class=\"kit-section-pricing\">\n  <h3>Simple pricing</h3>\n  <div class=\"kit-pricing-grid\">\n    <div class=\"kit-price-card\"><h4>Starter</h4><div class=\"kit-price\">$0</div><ul><li>10 components</li><li>Community support</li><li>MIT license</li></ul><button class=\"kit-btn kit-btn-ghost\">Get started</button></div>\n    <div class=\"kit-price-card featured\"><h4>Pro</h4><div class=\"kit-price\">$29</div><ul><li>Unlimited components</li><li>Priority support</li><li>Commercial use</li></ul><button class=\"kit-btn kit-btn-primary\">Buy now</button></div>\n    <div class=\"kit-price-card\"><h4>Team</h4><div class=\"kit-price\">$99</div><ul><li>Everything in Pro</li><li>SSO</li><li>Custom billing</li></ul><button class=\"kit-btn kit-btn-ghost\">Contact sales</button></div>\n  </div>\n</section>",
+      "css": ".kit-section-pricing { padding:40px 24px; border:1px solid var(--m-border); border-radius:var(--m-radius-xl); background:var(--m-surface); }\n.kit-section-pricing h3 { font-size:22px; font-weight:700; margin-bottom:24px; text-align:center; }\n.kit-pricing-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px; }\n.kit-price-card { padding:22px; background:var(--m-surface-raised); border:1px solid var(--m-border); border-radius:var(--m-radius-lg); }\n.kit-price-card.featured { border-color:var(--m-accent); background:rgba(var(--m-accent-rgb),0.06); }\n.kit-price-card h4 { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--m-text-muted); margin-bottom:10px; }\n.kit-price { font-size:32px; font-weight:800; letter-spacing:-0.02em; margin-bottom:16px; }\n.kit-price-card ul { list-style:none; font-size:12px; color:var(--m-text-muted); line-height:1.8; margin-bottom:18px; padding:0; }\n.kit-btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 18px; border-radius:var(--m-radius); font-family:var(--m-sans); font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent; }\n.kit-btn-primary { background:linear-gradient(135deg, var(--m-accent), color-mix(in srgb, var(--m-accent) 65%, var(--m-accent-2))); color:#fff; }\n.kit-btn-ghost { background:transparent; border-color:var(--m-border); color:var(--m-text-muted); }",
+      "js": ""
+    },
+    {
+      "id": "k3co4av",
+      "type": "section",
+      "name": "Stats Strip",
+      "key": "stats",
+      "props": {
+        "title": "Numbers that matter",
+        "effect": "stagger"
+      },
+      "html": "<section class=\"kit-section-stats\">\n  <h3 style=\"text-align:center;margin-bottom:24px;font-size:22px;font-weight:700\">Numbers that matter</h3>\n  <div class=\"kit-stats-grid\">\n    <div class=\"kit-stat\"><strong>12k+</strong><span>Downloads</span></div>\n    <div class=\"kit-stat\"><strong>99.9%</strong><span>Uptime</span></div>\n    <div class=\"kit-stat\"><strong>4.9</strong><span>Rating</span></div>\n    <div class=\"kit-stat\"><strong>24h</strong><span>Support</span></div>\n  </div>\n</section>",
+      "css": ".kit-section-stats { padding:32px 24px; border:1px solid var(--m-border); border-radius:var(--m-radius-xl); background:var(--m-surface); }\n.kit-stats-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:16px; }\n.kit-stat { text-align:center; }\n.kit-stat strong { display:block; font-size:28px; font-weight:800; background:linear-gradient(135deg, var(--m-accent), var(--m-accent-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }\n.kit-stat span { font-size:12px; color:var(--m-text-muted); }",
+      "js": ""
+    },
+    {
+      "id": "vo3gy5g",
+      "type": "section",
+      "name": "Newsletter",
+      "key": "newsletter",
+      "props": {
+        "title": "Stay in the loop",
+        "effect": "fade"
+      },
+      "html": "<section class=\"kit-section-newsletter\">\n  <h3 style=\"text-align:center;font-size:22px;font-weight:700;margin-bottom:8px\">Stay in the loop</h3>\n  <p style=\"text-align:center;color:var(--m-text-muted);font-size:14px\">Get weekly UI tips and new component drops.</p>\n  <form class=\"kit-newsletter-form\">\n    <input type=\"email\" class=\"kit-input\" placeholder=\"you@company.com\" required>\n    <button class=\"kit-btn kit-btn-primary\" type=\"submit\">Subscribe</button>\n  </form>\n</section>",
+      "css": ".kit-section-newsletter { padding:40px 24px; border:1px solid var(--m-border); border-radius:var(--m-radius-xl); background:var(--m-surface); }\n.kit-newsletter-form { display:flex; gap:10px; max-width:420px; margin:20px auto 0; }\n.kit-newsletter-form input { flex:1; }\n.kit-input { width:100%; padding:10px 14px; background:var(--m-surface-raised); border:1px solid var(--m-border); border-radius:var(--m-radius); color:var(--m-text); font-family:var(--m-sans); font-size:14px; outline:none; }\n.kit-input:focus { border-color:var(--m-accent); }\n.kit-btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 18px; border-radius:var(--m-radius); font-family:var(--m-sans); font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent; }\n.kit-btn-primary { background:linear-gradient(135deg, var(--m-accent), color-mix(in srgb, var(--m-accent) 65%, var(--m-accent-2))); color:#fff; }",
+      "js": ""
+    },
+    {
+      "id": "75jcysz",
+      "type": "component",
+      "name": "Button Primary",
+      "key": "button-primary",
+      "props": {
+        "label": "Get started",
+        "effect": ""
+      },
+      "html": "<button class=\"kit-btn kit-btn-primary\">Get started</button>",
+      "css": ".kit-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:10px 18px; border-radius:var(--m-radius); font-family:var(--m-sans); font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent; transition:transform 200ms var(--m-ease), box-shadow 200ms; }\n.kit-btn:hover { transform:translateY(-2px); }\n.kit-btn-primary { background:linear-gradient(135deg, var(--m-accent), color-mix(in srgb, var(--m-accent) 65%, var(--m-accent-2))); color:#fff; box-shadow:0 6px 20px rgba(var(--m-accent-rgb),0.3); }",
+      "js": ""
+    },
+    {
+      "id": "iancg9q",
+      "type": "component",
+      "name": "Card",
+      "key": "card",
+      "props": {
+        "title": "Premium card",
+        "text": "A refined surface with crisp borders and subtle depth.",
+        "effect": ""
+      },
+      "html": "<div class=\"kit-card\">\n  <div class=\"kit-card-media\"></div>\n  <div class=\"kit-card-content\">\n    <div class=\"kit-card-title\">Premium card</div>\n    <div class=\"kit-card-text\">A refined surface with crisp borders and subtle depth.</div>\n  </div>\n</div>",
+      "css": ".kit-card { background:var(--m-surface); border:1px solid var(--m-border); border-radius:var(--m-radius-lg); overflow:hidden; max-width:280px; transition:transform 200ms, box-shadow 200ms; }\n.kit-card:hover { transform:translateY(-3px); box-shadow:var(--m-shadow); }\n.kit-card-media { height:120px; background:linear-gradient(135deg, var(--m-accent), var(--m-accent-2)); opacity:0.9; }\n.kit-card-content { padding:18px; }\n.kit-card-title { font-size:15px; font-weight:700; margin-bottom:6px; }\n.kit-card-text { font-size:13px; color:var(--m-text-muted); line-height:1.55; }",
+      "js": ""
+    },
+    {
+      "id": "q4xrcny",
+      "type": "component",
+      "name": "Toast",
+      "key": "toast",
+      "props": {
+        "message": "Changes saved successfully",
+        "effect": "slide"
+      },
+      "html": "<div class=\"kit-toast\">\n  <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 6 9 17l-5-5\"/></svg>\n  <span>Changes saved successfully</span>\n</div>",
+      "css": ".kit-toast { display:inline-flex; align-items:center; gap:10px; padding:12px 16px; background:var(--m-surface-elevated); border:1px solid var(--m-border); border-radius:var(--m-radius); box-shadow:var(--m-shadow); color:var(--m-text); font-size:13px; }\n.kit-toast svg { color:var(--m-success); }",
+      "js": ""
+    }
+  ]
+}
