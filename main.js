@@ -821,6 +821,39 @@
     toastContainer: document.getElementById('toast-container')
   };
 
+  // Global drag-and-drop handlers on the canvas list container
+  els.canvasList.addEventListener('dragover', e => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    const target = e.target.closest('.canvas-item');
+    document.querySelectorAll('.canvas-item').forEach(el => el.classList.remove('is-drop-target'));
+    if (target) target.classList.add('is-drop-target');
+  });
+
+  els.canvasList.addEventListener('dragleave', e => {
+    if (e.target === els.canvasList) {
+      document.querySelectorAll('.canvas-item').forEach(el => el.classList.remove('is-drop-target'));
+    }
+  });
+
+  els.canvasList.addEventListener('drop', e => {
+    e.preventDefault();
+    const draggedId = e.dataTransfer.getData('text/plain');
+    const target = e.target.closest('.canvas-item');
+    document.querySelectorAll('.canvas-item').forEach(el => el.classList.remove('is-drop-target', 'is-dragging'));
+    if (!draggedId || !target) return;
+    const targetId = target.dataset.id;
+    if (draggedId === targetId) return;
+    const from = state.canvas.findIndex(i => i.id === draggedId);
+    const to = state.canvas.findIndex(i => i.id === targetId);
+    if (from > -1 && to > -1) {
+      const [moved] = state.canvas.splice(from, 1);
+      state.canvas.splice(to, 0, moved);
+      state.selectedId = draggedId;
+      renderCanvas();
+    }
+  });
+
   function renderLibrary() {
     const items = categories[state.activeLibrary].filter(item => {
       const q = state.libraryQuery.toLowerCase();
@@ -951,21 +984,14 @@
       wrapper.appendChild(body);
 
       header.addEventListener('click', () => selectItem(item.id));
-      wrapper.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', item.id); wrapper.classList.add('is-dragging'); });
-      wrapper.addEventListener('dragend', () => wrapper.classList.remove('is-dragging'));
-      wrapper.addEventListener('dragover', e => { e.preventDefault(); });
-      wrapper.addEventListener('drop', e => {
-        e.preventDefault();
-        const draggedId = e.dataTransfer.getData('text/plain');
-        if (draggedId && draggedId !== item.id) {
-          const from = state.canvas.findIndex(i => i.id === draggedId);
-          const to = state.canvas.findIndex(i => i.id === item.id);
-          if (from > -1 && to > -1) {
-            const [moved] = state.canvas.splice(from, 1);
-            state.canvas.splice(to, 0, moved);
-            renderCanvas();
-          }
-        }
+      wrapper.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', item.id);
+        e.dataTransfer.effectAllowed = 'move';
+        wrapper.classList.add('is-dragging');
+      });
+      wrapper.addEventListener('dragend', () => {
+        wrapper.classList.remove('is-dragging');
+        document.querySelectorAll('.canvas-item').forEach(el => el.classList.remove('is-drop-target'));
       });
 
       header.querySelectorAll('[data-action]').forEach(btn => {

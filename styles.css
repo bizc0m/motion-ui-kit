@@ -310,6 +310,15 @@ body {
 .canvas-item:hover { border-color: var(--m-border); box-shadow: var(--m-shadow-sm); }
 .canvas-item.is-selected { border-color: var(--m-accent); box-shadow: 0 0 0 1px var(--m-accent), var(--m-shadow); }
 .canvas-item.is-dragging { opacity: 0.5; }
+.canvas-item.is-drop-target { border-color: var(--m-accent); box-shadow: 0 0 0 2px var(--m-accent), var(--m-shadow); }
+.canvas-item.is-drop-target::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: -2px;
+  height: 3px;
+  background: var(--m-accent);
+  border-radius: 2px;
+}
 
 .canvas-item-header {
   display: flex; align-items: center; justify-content: space-between;
