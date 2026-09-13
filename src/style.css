@@ -1,0 +1,1287 @@
+/**
+ * Motion UI Kit — global styles + component / section / menu / effect styles.
+ *
+ * Uses CSS custom properties for light/dark theming and motion-friendly
+ * transitions. Imported by src/main.ts.
+ */
+
+:root {
+  /* Color tokens */
+  --mui-text: #3d3a41;
+  --mui-text-muted: #6f6b75;
+  --mui-text-heading: #111014;
+  --mui-bg: #ffffff;
+  --mui-surface: #f7f7f8;
+  --mui-surface-raised: #ffffff;
+  --mui-border: #e6e5e8;
+  --mui-accent: #6e56cf;
+  --mui-accent-hover: #5a46aa;
+  --mui-accent-text: #ffffff;
+  --mui-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 6px 16px rgba(0, 0, 0, 0.05);
+
+  /* Motion tokens */
+  --mui-duration: 200ms;
+  --mui-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Typography */
+  --mui-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mui-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  color-scheme: light dark;
+  font-family: var(--mui-sans);
+  color: var(--mui-text);
+  background-color: var(--mui-bg);
+  line-height: 1.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mui-text: #d4d2d8;
+    --mui-text-muted: #9c99a3;
+    --mui-text-heading: #f2f1f4;
+    --mui-bg: #141316;
+    --mui-surface: #1c1a1f;
+    --mui-surface-raised: #211f26;
+    --mui-border: #2e2c33;
+    --mui-accent: #9d8af7;
+    --mui-accent-hover: #b5a7ff;
+    --mui-accent-text: #111014;
+    --mui-shadow: 0 1px 3px rgba(0, 0, 0, 0.35), 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--mui-text-heading);
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+a {
+  color: var(--mui-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font: inherit;
+}
+
+/* =========================================================
+   Base interactive atoms
+   ========================================================= */
+
+.mui-button {
+  appearance: none;
+  border: 1px solid var(--mui-accent);
+  background: var(--mui-accent);
+  color: var(--mui-accent-text);
+  padding: 0.55rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform var(--mui-duration) var(--mui-ease),
+    background-color var(--mui-duration) var(--mui-ease),
+    box-shadow var(--mui-duration) var(--mui-ease);
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.mui-button:hover {
+  background: var(--mui-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--mui-shadow);
+}
+
+.mui-button:active {
+  transform: translateY(0);
+}
+
+.mui-button:focus-visible {
+  outline: 2px solid var(--mui-accent);
+  outline-offset: 2px;
+}
+
+.mui-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+}
+
+.mui-split-button {
+  display: inline-flex;
+
+  .mui-button:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .mui-caret {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+.mui-button-group {
+  display: inline-flex;
+
+  .mui-button:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  .mui-button:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .mui-button:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .mui-button:not(:last-child) {
+    border-right-color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+.mui-fab {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 50;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--mui-accent);
+  color: var(--mui-accent-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: var(--mui-shadow);
+  transition: transform var(--mui-duration) var(--mui-ease);
+}
+
+.mui-fab:hover {
+  transform: scale(1.08);
+}
+
+.mui-input,
+.mui-textarea,
+.mui-select {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--mui-border);
+  border-radius: 0.5rem;
+  background: var(--mui-bg);
+  color: var(--mui-text);
+  font: inherit;
+  transition: border-color var(--mui-duration) var(--mui-ease),
+    box-shadow var(--mui-duration) var(--mui-ease);
+}
+
+.mui-input:focus,
+.mui-textarea:focus,
+.mui-select:focus {
+  outline: none;
+  border-color: var(--mui-accent);
+  box-shadow: 0 0 0 3px rgba(110, 86, 207, 0.15);
+}
+
+.mui-checkbox,
+.mui-radio,
+.mui-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.mui-toggle-track {
+  width: 2.5rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  background: var(--mui-border);
+  position: relative;
+  transition: background-color var(--mui-duration) var(--mui-ease);
+}
+
+.mui-toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 0.15rem;
+  left: 0.15rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  background: var(--mui-bg);
+  transition: transform var(--mui-duration) var(--mui-ease);
+}
+
+.mui-toggle input {
+  position: absolute;
+  opacity: 0;
+}
+
+.mui-toggle input:checked + .mui-toggle-track {
+  background: var(--mui-accent);
+}
+
+.mui-toggle input:checked + .mui-toggle-track::after {
+  transform: translateX(1.15rem);
+}
+
+.mui-slider,
+.mui-range input {
+  width: 100%;
+  accent-color: var(--mui-accent);
+}
+
+.mui-range {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mui-file-upload {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border: 1px dashed var(--mui-border);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: border-color var(--mui-duration) var(--mui-ease);
+}
+
+.mui-file-upload:hover {
+  border-color: var(--mui-accent);
+}
+
+.mui-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--mui-border);
+  border-radius: 0.5rem;
+  background: var(--mui-bg);
+}
+
+.mui-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: inherit;
+  font: inherit;
+}
+
+.mui-pin-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mui-pin-digit {
+  width: 2.25rem;
+  text-align: center;
+}
+
+/* =========================================================
+   Cards, avatars, badges, tags
+   ========================================================= */
+
+.mui-card {
+  background: var(--mui-surface-raised);
+  border: 1px solid var(--mui-border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: var(--mui-shadow);
+  transition: transform var(--mui-duration) var(--mui-ease);
+}
+
+.mui-card:hover {
+  transform: translateY(-2px);
+}
+
+.mui-card--raised {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.mui-card-title {
+  margin: 0 0 0.25rem;
+}
+
+.mui-card-body {
+  margin: 0;
+  color: var(--mui-text-muted);
+}
+
+.mui-card-content h4 {
+  margin: 0 0 0.25rem;
+}
+
+.mui-media-thumb {
+  width: 100%;
+  height: 5rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, var(--mui-accent), #c4b5fd);
+  margin-bottom: 0.75rem;
+}
+
+.mui-product-card .mui-price {
+  font-weight: 700;
+  color: var(--mui-text-heading);
+  margin: 0.25rem 0;
+}
+
+.mui-testimonial p {
+  margin: 0 0 0.75rem;
+  font-style: italic;
+}
+
+.mui-testimonial footer {
+  color: var(--mui-text-muted);
+  font-weight: 500;
+}
+
+.mui-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mui-accent);
+  color: var(--mui-accent-text);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.mui-badge,
+.mui-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.mui-badge {
+  background: var(--mui-accent);
+  color: var(--mui-accent-text);
+}
+
+.mui-tag {
+  background: var(--mui-surface);
+  color: var(--mui-text-muted);
+  border: 1px solid var(--mui-border);
+}
+
+/* =========================================================
+   Overlays
+   ========================================================= */
+
+.mui-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.mui-tooltip {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.4rem;
+  background: var(--mui-text-heading);
+  color: var(--mui-bg);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--mui-duration) var(--mui-ease),
+    transform var(--mui-duration) var(--mui-ease);
+}
+
+.mui-tooltip-wrapper:hover .mui-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.mui-popover {
+  position: absolute;
+  z-index: 20;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background: var(--mui-surface-raised);
+  border: 1px solid var(--mui-border);
+  border-radius: 0.5rem;
+  box-shadow: var(--mui-shadow);
+}
+
+.mui-modal,
+.mui-command-palette {
+  border: 1px solid var(--mui-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  background: var(--mui-surface-raised);
+  box-shadow: var(--mui-shadow);
+}
+
+.mui-modal::backdrop,
+.mui-command-palette::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+}
+
+.mui-drawer {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 16rem;
+  background: var(--mui-surface-raised);
+  border-right: 1px solid var(--mui-border);
+  box-shadow: var(--mui-shadow);
+  z-index: 60;
+  padding: 1rem;
+}
+
+.mui-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.mui-drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mui-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 70;
+  padding: 0.75rem 1rem;
+  background: var(--mui-text-heading);
+  color: var(--mui-bg);
+  border-radius: 0.5rem;
+  box-shadow: var(--mui-shadow);
+  animation: toast-in 250ms var(--mui-ease);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mui-alert {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(110, 86, 207, 0.12);
+  border: 1px solid rgba(110, 86, 207, 0.25);
+  color: var(--mui-text-heading);
+}
+
+/* =========================================================
+   Feedback
+   ========================================================= */
+
+.mui-progress {
+  width: 100%;
+  height: 0.5rem;
+  background: var(--mui-surface);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.mui-progress-bar {
+  height: 100%;
+  background: var(--mui-accent);
+  border-radius: inherit;
+  transition: width 300ms var(--mui-ease);
+}
+
+.mui-spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--mui-border);
+  border-top-color: var(--mui-accent);
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mui-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.mui-skeleton-line {
+  height: 0.75rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--mui-surface) 25%, var(--mui-border) 50%, var(--mui-surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.mui-skeleton-line--short {
+  width: 60%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* =========================================================
+   Navigation
+   ========================================================= */
+
+.mui-accordion {
+  width: 100%;
+}
+
+.mui-accordion-item {
+  border-bottom: 1px solid var(--mui-border);
+  padding: 0.75rem 0;
+}
+
+.mui-accordion-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--mui-text-heading);
+}
+
+.mui-tabs {
+  width: 100%;
+}
+
+.mui-tab-list {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--mui-border);
+  margin-bottom: 0.75rem;
+}
+
+.mui-tab {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--mui-text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color var(--mui-duration) var(--mui-ease);
+}
+
+.mui-tab--active {
+  color: var(--mui-accent);
+  border-bottom-color: var(--mui-accent);
+}
+
+.mui-tab-panel {
+  padding: 0.5rem 0;
+}
+
+.mui-breadcrumb ol {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--mui-text-muted);
+}
+
+.mui-breadcrumb li:not(:last-child)::after {
+  content: '/';
+  margin-left: 0.5rem;
+}
+
+.mui-pagination {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.mui-page {
+  min-width: 2.25rem;
+}
+
+.mui-page--active {
+  background: var(--mui-text-heading);
+  border-color: var(--mui-text-heading);
+  color: var(--mui-bg);
+}
+
+.mui-stepper {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mui-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--mui-text-muted);
+}
+
+.mui-step::before {
+  content: '';
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--mui-surface);
+  border: 1px solid var(--mui-border);
+}
+
+.mui-step--complete {
+  color: var(--mui-accent);
+}
+
+.mui-step--complete::before {
+  background: var(--mui-accent);
+  border-color: var(--mui-accent);
+}
+
+.mui-step--active {
+  color: var(--mui-text-heading);
+  font-weight: 600;
+}
+
+.mui-step--active::before {
+  border-color: var(--mui-accent);
+  box-shadow: 0 0 0 3px rgba(110, 86, 207, 0.15);
+}
+
+.mui-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.mui-dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  z-index: 20;
+  min-width: 10rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem;
+  background: var(--mui-surface-raised);
+  border: 1px solid var(--mui-border);
+  border-radius: 0.5rem;
+  box-shadow: var(--mui-shadow);
+}
+
+.mui-dropdown-menu a {
+  display: block;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.35rem;
+}
+
+.mui-dropdown-menu a:hover {
+  background: var(--mui-surface);
+}
+
+/* =========================================================
+   Menu presets
+   ========================================================= */
+
+.mui-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--mui-surface-raised);
+  border: 1px solid var(--mui-border);
+  border-radius: 0.75rem;
+  width: 100%;
+}
+
+.mui-brand {
+  font-weight: 700;
+  color: var(--mui-text-heading);
+}
+
+.mui-nav-links,
+.mui-sidebar-nav,
+.mui-mega-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.mui-sidebar {
+  flex-direction: column;
+  align-items: flex-start;
+  width: 12rem;
+}
+
+.mui-sidebar-nav {
+  flex-direction: column;
+  width: 100%;
+}
+
+.mui-bottom-nav {
+  position: relative;
+  justify-content: space-around;
+  border-radius: 999px;
+}
+
+.mui-command-palette input {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.mui-command-palette ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mui-command-palette button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: var(--mui-text);
+  padding: 0.5rem;
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
+
+.mui-command-palette button:hover {
+  background: var(--mui-surface);
+}
+
+.mui-mega-menu {
+  flex-wrap: wrap;
+}
+
+.mui-mega-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mui-context-target {
+  padding: 1rem;
+  border: 1px dashed var(--mui-border);
+  border-radius: 0.5rem;
+  color: var(--mui-text-muted);
+}
+
+.mui-context-menu {
+  position: absolute;
+  z-index: 30;
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem;
+  background: var(--mui-surface-raised);
+  border: 1px solid var(--mui-border);
+  border-radius: 0.5rem;
+  box-shadow: var(--mui-shadow);
+}
+
+.mui-context-menu button {
+  background: transparent;
+  border: none;
+  color: var(--mui-text);
+  padding: 0.45rem 0.6rem;
+  cursor: pointer;
+}
+
+/* =========================================================
+   Demo page layout
+   ========================================================= */
+
+#app {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0 1rem 4rem;
+}
+
+.demo-hero {
+  text-align: center;
+  padding: 5rem 1rem 3rem;
+}
+
+.demo-hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.demo-hero p {
+  color: var(--mui-text-muted);
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+}
+
+.demo-stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--mui-surface);
+  border: 1px solid var(--mui-border);
+  border-radius: 1rem;
+  margin-bottom: 3rem;
+}
+
+.demo-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 5rem;
+}
+
+.demo-stat strong {
+  font-size: 1.75rem;
+  color: var(--mui-text-heading);
+}
+
+.demo-stat span {
+  font-size: 0.8rem;
+  color: var(--mui-text-muted);
+}
+
+.demo-gallery {
+  margin-top: 3rem;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+
+.demo-card {
+  background: var(--mui-surface-raised);
+  border: 1px solid var(--mui-border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: var(--mui-shadow);
+}
+
+.demo-card h3 {
+  font-size: 0.9rem;
+  color: var(--mui-text-muted);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.demo-stage {
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--mui-surface);
+  border-radius: 0.5rem;
+}
+
+.demo-section-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  gap: 1rem;
+}
+
+.demo-section-card {
+  background: var(--mui-surface-raised);
+  border: 1px solid var(--mui-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: var(--mui-shadow);
+}
+
+.demo-section-card h3 {
+  font-size: 0.9rem;
+  color: var(--mui-text-muted);
+  padding: 0.75rem 1rem 0;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.demo-section-preview {
+  transform: scale(0.92);
+  transform-origin: top left;
+  width: 109%;
+}
+
+.demo-section-preview > * {
+  margin: 0;
+}
+
+.demo-effects-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--mui-surface);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.demo-effect-target {
+  width: 8rem;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mui-accent);
+  color: var(--mui-accent-text);
+  border-radius: 1rem;
+  font-weight: 700;
+}
+
+.demo-stagger-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.demo-stagger-box {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.35rem;
+  background: var(--mui-accent);
+}
+
+.demo-effect-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.demo-footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--mui-border);
+  color: var(--mui-text-muted);
+}
+
+/* =========================================================
+   Section presets
+   ========================================================= */
+
+.mui-section {
+  padding: 2rem;
+}
+
+.mui-section > h2 {
+  margin-bottom: 1rem;
+}
+
+.mui-section-label {
+  color: var(--mui-text-muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.mui-hero {
+  text-align: center;
+}
+
+.mui-hero--split,
+.mui-hero--full-bleed,
+.mui-features--split,
+.mui-contact--split {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.mui-hero-visual,
+.mui-split-visual {
+  min-height: 8rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, var(--mui-accent), #c4b5fd);
+}
+
+.mui-grid-2,
+.mui-grid-3,
+.mui-grid-4 {
+  display: grid;
+  gap: 1rem;
+}
+
+.mui-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.mui-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.mui-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.mui-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.mui-row > * {
+  flex: 1 1 calc(50% - 0.5rem);
+}
+
+.mui-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.mui-pricing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.mui-pricing-card {
+  text-align: center;
+}
+
+.mui-pricing-card--highlight {
+  border-color: var(--mui-accent);
+}
+
+.mui-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--mui-text-heading);
+}
+
+.mui-logos {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  color: var(--mui-text-muted);
+  font-weight: 600;
+}
+
+.mui-stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.mui-stats-row > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mui-stats-row strong {
+  font-size: 2rem;
+  color: var(--mui-text-heading);
+}
+
+.mui-stats-grid .mui-card {
+  text-align: center;
+}
+
+.mui-cta {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.mui-cta--banner {
+  background: var(--mui-surface);
+  border-radius: 1rem;
+}
+
+.mui-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mui-card--horizontal {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.mui-card--horizontal .mui-media-thumb {
+  width: 6rem;
+  height: 6rem;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.mui-inline-form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.mui-inline-form .mui-input {
+  flex: 1 1 12rem;
+}
+
+.mui-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mui-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mui-table th,
+.mui-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--mui-border);
+  text-align: left;
+}
+
+.mui-gallery-grid,
+.mui-masonry {
+  display: grid;
+  gap: 1rem;
+}
+
+.mui-gallery-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.mui-masonry {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.mui-gallery-item {
+  min-height: 6rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, var(--mui-accent), #c4b5fd);
+}
+
+.mui-gallery-item--tall {
+  grid-row: span 2;
+}
+
+.mui-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.mui-footer-grid ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mui-footer-copy {
+  text-align: center;
+  color: var(--mui-text-muted);
+  margin-top: 2rem;
+}
+
+/* =========================================================
+   Effect primitives
+   ========================================================= */
+
+.mui-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .mui-grid-2,
+  .mui-grid-3,
+  .mui-grid-4,
+  .mui-pricing-grid,
+  .mui-gallery-grid,
+  .mui-masonry,
+  .mui-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mui-hero--split,
+  .mui-features--split,
+  .mui-contact--split {
+    grid-template-columns: 1fr;
+  }
+
+  .mui-row > * {
+    flex: 1 1 100%;
+  }
+
+  .demo-section-preview {
+    transform: scale(1);
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
